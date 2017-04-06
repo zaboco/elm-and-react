@@ -3,10 +3,14 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import PostList from '../post/PostList';
-
+import type { PostParamsArray } from '../post/PostList';
 import './App.css';
 
-const posts = [{ id: 1, title: 'Post 1' }, { id: 2, title: 'Post 2' }];
+const posts: PostParamsArray = [
+  { id: 1, title: 'Post 1' },
+  { id: 2, title: 'Post 2' },
+  { id: 3, title: 'Post 3' },
+];
 
 class App extends Component {
   render() {

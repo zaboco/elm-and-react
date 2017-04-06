@@ -1,13 +1,18 @@
 .Post {
-  border-bottom: 1px solid beige;
+  cursor: default;
+  border-bottom: 1px solid lightslategray;
   padding: 8px;
 }
 
 .Post-id {
   color: red;
-  padding: 8px;
+  margin-right: 8px;
 }
 
-.Post-title {
+.Post:hover {
+  background-color: ghostwhite;
+}
+
+.Post.selected {
   font-weight: bold;
 }

@@ -1,7 +1,6 @@
 // @flow
 
 import React from 'react';
-
 import './Post.css';
 
 type PostParams = {
@@ -9,8 +8,10 @@ type PostParams = {
   title: string,
 };
 
+const postClass = selected => selected ? 'Post selected' : 'Post';
+
 const Post = ({ id, title }: PostParams) => (
-  <div className="Post">
+  <div className={postClass(id === 1)}>
     <span className="Post-id">{id}</span>
     <span className="Post-title">{title}</span>
   </div>
