@@ -1,4 +1,5 @@
 .Post {
+  position: relative;
   cursor: default;
   border-bottom: 1px solid lightslategray;
   padding: 8px;
@@ -9,10 +10,32 @@
   margin-right: 8px;
 }
 
-.Post:hover {
+.Post-votes {
+  position: absolute;
+  right: 0;
+  display: none;
+}
+
+.Post-votes button {
+  position: relative;
+  top: -2px;
+  border: none;
+  background-color: lightslategray;
+  color: ghostwhite;
+}
+
+.Post-votes span {
+  margin: 8px;
+}
+
+.Post:not(.selected):hover {
   background-color: ghostwhite;
 }
 
 .Post.selected {
   font-weight: bold;
+}
+
+.Post.selected .Post-votes {
+  display: inline;
 }
