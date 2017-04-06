@@ -1,0 +1,13 @@
+.Post {
+  border-bottom: 1px solid beige;
+  padding: 8px;
+}
+
+.Post-id {
+  color: red;
+  padding: 8px;
+}
+
+.Post-title {
+  font-weight: bold;
+}
