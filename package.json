@@ -15,10 +15,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm run build-elm && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "flow": "flow",
-    "watch-elm": "cd elm && chokidar '**/*.elm' -c 'elm make Posts.elm --output=posts.elm.js' --initial",
+    "build-elm": "cd elm && elm make Posts.elm --output=posts.elm.js",
+    "watch-elm": "chokidar 'elm/**/*.elm' -c 'npm run build-elm' --initial -d 1700",
     "eject": "react-scripts eject"
   }
 }
