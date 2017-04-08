@@ -3,29 +3,29 @@
 import React from 'react';
 import './Post.css';
 
-type PostParams = {
+export type PostType = {
   id: number,
   title: string,
   votes?: number,
 };
 
+type PostParams = {
+  post: PostType,
+  onVotesChange: (delta: number) => void,
+};
+
 const postClass = selected => selected ? 'Post selected' : 'Post';
 
-const Post = ({ id, title, votes }: PostParams) => (
+const Post = ({ post: { id, title, votes }, onVotesChange }: PostParams) => (
   <div className={postClass(id === 1)}>
     <span className="Post-id">{id}</span>
     <span className="Post-title">{title}</span>
     <div className="Post-votes">
-      <button>-</button>
+      <button onClick={() => onVotesChange(-1)}>-</button>
       <span>{votes}</span>
-      <button>+</button>
+      <button onClick={() => onVotesChange(1)}>+</button>
     </div>
   </div>
 );
 
-Post.defaultProps = {
-  votes: 0,
-};
-
-export type { PostParams };
 export default Post;

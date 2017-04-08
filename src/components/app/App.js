@@ -7,9 +7,9 @@ import type { PostParamsArray } from '../post/PostList';
 import './App.css';
 
 const posts: PostParamsArray = [
-  { id: 1, title: 'Post 1' },
-  { id: 2, title: 'Post 2' },
-  { id: 3, title: 'Post 3' },
+  { id: 1, title: 'Post 1', votes: 0 },
+  { id: 2, title: 'Post 2', votes: 0 },
+  { id: 3, title: 'Post 3', votes: 0 },
 ];
 
 class App extends Component {
@@ -21,7 +21,12 @@ class App extends Component {
           <h2>Some posts</h2>
         </div>
         <div className="App-body">
-          <PostList posts={posts} />
+          <PostList
+            posts={posts}
+            onPostVotesChange={(id, delta) => {
+              console.log(`Post ${id} votes changed by ${delta}`);
+            }}
+          />
         </div>
       </div>
     );
