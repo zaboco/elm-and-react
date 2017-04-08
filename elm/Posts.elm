@@ -1,26 +1,34 @@
 module Posts exposing (main)
 
 import Html exposing (Html)
+import Types exposing (Post, initPost, changePostVotes)
+import Views
 
 
 type alias Model =
-    {}
+    { post : Post
+    , selected : Bool
+    }
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( {}, Cmd.none )
+    ( { post = initPost 1 "Post 1", selected = False }, Cmd.none )
 
 
 type Msg
-    = NoOp
+    = SelectPost
+    | ChangeVotes Int
 
 
-update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
-    case msg of
-        NoOp ->
-            model ! []
+updateModel : Msg -> Model -> Model
+updateModel msg model =
+    case (Debug.log "msg" msg) of
+        SelectPost ->
+            { model | selected = True }
+
+        ChangeVotes delta ->
+            { model | post = changePostVotes delta model.post }
 
 
 subscriptions : Model -> Sub Msg
@@ -29,15 +37,15 @@ subscriptions _ =
 
 
 view : Model -> Html Msg
-view _ =
-    Html.div [] [ Html.text "Hello Elm!" ]
+view { post, selected } =
+    Views.post ChangeVotes SelectPost selected post
 
 
 main : Program Never Model Msg
 main =
     Html.program
         { init = init
-        , update = update
+        , update = (\msg model -> updateModel msg model ! [])
         , subscriptions = subscriptions
         , view = view
         }
