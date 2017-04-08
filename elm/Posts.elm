@@ -51,7 +51,7 @@ requestPosts =
 
 updateModel : Msg -> Model -> Model
 updateModel msg model =
-    case (Debug.log "msg" msg) of
+    case msg of
         SelectPost id ->
             { model | selectedId = Just id }
 

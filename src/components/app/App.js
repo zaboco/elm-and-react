@@ -4,12 +4,18 @@ import React, { Component } from 'react';
 import Elm from 'react-elm-components';
 import { Posts } from '../../../elm/posts.elm';
 
-import logo from './logo.svg';
+import reactLogo from './react-logo.svg';
+import elmLogo from './elm-logo.svg';
 import PostListContainer from '../PostListContainer';
 import './App.css';
 
 const PAGES = ['React & Redux', 'Elm'];
 const [REACT_REDUX, ELM] = PAGES;
+
+const LOGOS = {
+  [REACT_REDUX]: reactLogo,
+  [ELM]: elmLogo,
+};
 
 const navItemClass = selected => selected ? 'App-nav-item selected' : 'App-nav-item';
 
@@ -43,11 +49,12 @@ class App extends Component {
     super(props);
 
     this.state = {
-      page: ELM,
+      page: REACT_REDUX,
     };
   }
   render() {
     const { page } = this.state;
+    const logo = LOGOS[page];
     return (
       <div className="App">
         <div className="App-header">
