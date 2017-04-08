@@ -13,20 +13,18 @@ type ChangeVotesAction = { type: typeof TYPES.CHANGE_VOTES, id: number, delta: n
 type InitPostsAction = { type: typeof TYPES.INIT_POSTS, posts: PostArrayType };
 export type Action = SelectPostAction | ChangeVotesAction | InitPostsAction;
 
-type ActionCreator<A> = (...args: Array<any>) => A;
-
-export const selectPost: ActionCreator<SelectPostAction> = (id: number) => ({
+export const selectPost = (id: number): SelectPostAction => ({
   type: TYPES.SELECT_POST,
   id,
 });
 
-export const changePostVotes: ActionCreator<ChangeVotesAction> = (id: number, delta: number) => ({
+export const changePostVotes = (id: number, delta: number): ChangeVotesAction => ({
   type: TYPES.CHANGE_VOTES,
   id,
   delta,
 });
 
-export const initPosts: ActionCreator<InitPostsAction> = (posts: PostArrayType = []) => ({
+export const initPosts = (posts: PostArrayType = []): InitPostsAction => ({
   type: TYPES.INIT_POSTS,
   posts,
 });
