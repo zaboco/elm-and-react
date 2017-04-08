@@ -26,6 +26,7 @@ class App extends Component {
             onPostVotesChange={(id, delta) => {
               console.log(`Post ${id} votes changed by ${delta}`);
             }}
+            onPostSelect={id => console.log(`Post ${id} was selected`)}
           />
         </div>
       </div>
