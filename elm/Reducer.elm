@@ -72,8 +72,12 @@ updateModel msg model =
             else
                 { posts = Just posts, selectedId = Maybe.map .id <| List.head posts }
 
-        LoadPosts (Err _) ->
-            { model | posts = Just [] }
+        LoadPosts (Err err) ->
+            let
+                _ =
+                    Debug.log "err" err
+            in
+                { model | posts = Just [] }
 
 
 subscriptions : Model -> Sub Msg
