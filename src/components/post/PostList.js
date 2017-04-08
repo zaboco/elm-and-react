@@ -30,22 +30,24 @@ const PostList = (
     onPostVotesChange,
     onPostSelect,
   }: PostListParams,
-) => (
-  <div className="PostList">
-    {posts == null
-      ? renderLoadingState()
-      : posts.length === 0
-          ? renderEmptyState()
-          : posts.map(post => (
-              <Post
-                key={post.id}
-                post={post}
-                selected={post.id === selectedPostId}
-                onVotesChange={delta => onPostVotesChange(post.id, delta)}
-                onSelect={() => onPostSelect(post.id)}
-              />
-            ))}
-  </div>
-);
+) => {
+  return (
+    <div className="PostList">
+      {posts == null
+        ? renderLoadingState()
+        : posts.length === 0
+            ? renderEmptyState()
+            : posts.map(post => (
+                <Post
+                  key={post.id}
+                  post={post}
+                  selected={post.id === selectedPostId}
+                  onVotesChange={delta => onPostVotesChange(post.id, delta)}
+                  onSelect={() => onPostSelect(post.id)}
+                />
+              ))}
+    </div>
+  );
+};
 
 export default PostList;

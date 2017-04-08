@@ -4,17 +4,20 @@ import React, { Component } from 'react';
 import Elm from 'react-elm-components';
 import { Posts } from '../../../elm/posts.elm';
 
-import reactLogo from './react-logo.svg';
+import reduxLogo from './redux-logo.svg';
 import elmLogo from './elm-logo.svg';
+import reduxElmLogo from './redux-elm-logo.svg';
 import PostListContainer from '../PostListContainer';
+import PostListElmContainer from '../PostListElmContainer';
 import './App.css';
 
-const PAGES = ['React & Redux', 'Elm'];
-const [REACT_REDUX, ELM] = PAGES;
+const PAGES = ['React & Redux', 'Elm', 'Elm Reducer Middleware'];
+const [REACT_REDUX, ELM, ELM_REDUCER] = PAGES;
 
 const LOGOS = {
-  [REACT_REDUX]: reactLogo,
+  [REACT_REDUX]: reduxLogo,
   [ELM]: elmLogo,
+  [ELM_REDUCER]: reduxElmLogo,
 };
 
 const navItemClass = selected => selected ? 'App-nav-item selected' : 'App-nav-item';
@@ -39,6 +42,8 @@ const AppBody = ({ page }) => {
       return <PostListContainer />;
     case ELM:
       return <Elm src={Posts} />;
+    case ELM_REDUCER:
+      return <PostListElmContainer />;
     default:
       return <div>Not Found</div>;
   }
@@ -49,7 +54,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      page: REACT_REDUX,
+      page: ELM_REDUCER,
     };
   }
   render() {

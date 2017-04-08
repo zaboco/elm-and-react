@@ -3,13 +3,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import createElmMiddleware, { reducer as elmReducer } from 'redux-elm-middleware';
 import appReducers from './reducers';
 import { initPosts } from './actions';
 import App from './components/app/App';
+import Elm from '../elm/reducer.elm';
 import './index.css';
 
-const store = createStore(appReducers, {});
+const reducer = combineReducers({
+  elm: elmReducer,
+  app: appReducers,
+});
+
+const elmStore = Elm.Reducer.worker();
+const { run: runElm, elmMiddleware } = createElmMiddleware(elmStore);
+
+const store = createStore(reducer, {}, applyMiddleware(elmMiddleware));
+
+runElm(store);
 
 setTimeout(fetchPosts, 700);
 

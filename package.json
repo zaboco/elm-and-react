@@ -7,7 +7,8 @@
     "react-dom": "^15.4.2",
     "react-elm-components": "^1.0.1",
     "react-redux": "^5.0.3",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "redux-elm-middleware": "^3.0.0"
   },
   "devDependencies": {
     "flow-bin": "^0.43.1",
@@ -15,11 +16,13 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "npm run build-elm && react-scripts build",
+    "build": "yarn build-elm && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "flow": "flow",
     "build-elm": "cd elm && elm make Posts.elm --output=posts.elm.js",
-    "watch-elm": "chokidar 'elm/**/*.elm' -c 'npm run build-elm' --initial -d 1700",
+    "build-elm-redux": "cd elm && elm make Reducer.elm --output=reducer.elm.js",
+    "watch-elm": "chokidar 'elm/**/*.elm' -c 'yarn build-elm' --initial -d 1700",
+    "watch-elm-redux": "chokidar 'elm/**/*.elm' -c 'yarn build-elm-redux' --initial -d 1700",
     "eject": "react-scripts eject"
   }
 }
