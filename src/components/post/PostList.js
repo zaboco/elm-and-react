@@ -2,26 +2,28 @@
 
 import React from 'react';
 import Post from './Post';
-import type { PostType } from './Post';
+import type { PostArrayType } from '../../types';
 
-type PostParamsArray = Array<PostType>;
-
+type PostListParams = {
+  posts: PostArrayType,
+  selectedPostId: number,
+  onPostVotesChange: (id: number, delta: number) => void,
+  onPostSelect: (id: number) => void,
+};
 const PostList = (
   {
     posts,
+    selectedPostId,
     onPostVotesChange,
     onPostSelect,
-  }: {
-    posts: Array<PostType>,
-    onPostVotesChange: (id: number, votes: number) => void,
-    onPostSelect: (id: number) => void,
-  },
+  }: PostListParams,
 ) => (
   <div className="PostList">
     {posts.map(post => (
       <Post
         key={post.id}
         post={post}
+        selected={post.id === selectedPostId}
         onVotesChange={delta => onPostVotesChange(post.id, delta)}
         onSelect={() => onPostSelect(post.id)}
       />
@@ -29,5 +31,4 @@ const PostList = (
   </div>
 );
 
-export type { PostParamsArray };
 export default PostList;

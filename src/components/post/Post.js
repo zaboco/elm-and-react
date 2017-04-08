@@ -1,17 +1,12 @@
 // @flow
 
 import React from 'react';
+import type { PostType } from '../../types';
 import './Post.css';
-
-export type PostType = {
-  id: number,
-  title: string,
-  votes?: number,
-};
 
 type PostParams = {
   post: PostType,
-  selectedId?: number,
+  selected: boolean,
   onVotesChange: (delta: number) => void,
   onSelect: () => void,
 };
@@ -24,8 +19,8 @@ const stopPropagation = (next: () => void) =>
     next();
   };
 
-const Post = ({ post: { id, title, votes }, selectedId, onVotesChange, onSelect }: PostParams) => (
-  <div className={postClass(id === selectedId)} onClick={onSelect}>
+const Post = ({ post: { id, title, votes }, selected, onVotesChange, onSelect }: PostParams) => (
+  <div className={postClass(selected)} onClick={onSelect}>
     <span className="Post-id">{id}</span>
     <span className="Post-title">{title}</span>
     <div className="Post-votes">
@@ -35,9 +30,5 @@ const Post = ({ post: { id, title, votes }, selectedId, onVotesChange, onSelect 
     </div>
   </div>
 );
-
-Post.defaultProps = {
-  selectedId: 1,
-};
 
 export default Post;
