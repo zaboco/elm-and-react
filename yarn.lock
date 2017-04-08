@@ -4156,6 +4156,10 @@ react-dom@^15.4.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
 
+react-elm-components@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-elm-components/-/react-elm-components-1.0.1.tgz#19c7766b5c5ff4412867acc22dcf9f1d9eae9e3d"
+
 react-redux@^5.0.3:
   version "5.0.3"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-5.0.3.tgz#86c3b68d56e74294a42e2a740ab66117ef6c019f"

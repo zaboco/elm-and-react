@@ -11,7 +11,7 @@ import './index.css';
 
 const store = createStore(appReducers, {});
 
-setTimeout(fetchPosts, 500);
+setTimeout(fetchPosts, 0);
 
 function fetchPosts() {
   return fetch('https://jsonplaceholder.typicode.com/posts?_start=4&_end=8')

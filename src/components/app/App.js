@@ -1,6 +1,9 @@
 // @flow
 
 import React, { Component } from 'react';
+import Elm from 'react-elm-components';
+import { Posts } from '../../../elm/posts.elm';
+
 import logo from './logo.svg';
 import PostListContainer from '../PostListContainer';
 import './App.css';
@@ -15,6 +18,7 @@ class App extends Component {
         </div>
         <div className="App-body">
           <PostListContainer />
+          <Elm src={Posts} />
         </div>
       </div>
     );
