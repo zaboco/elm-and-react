@@ -1,5 +1,7 @@
 module Types exposing (..)
 
+import Json.Decode as Decode exposing (Decoder)
+
 
 type Id
     = Id Int
@@ -37,3 +39,15 @@ updatePostWithId id update posts =
                 post
     in
         List.map updateIfNeeded posts
+
+
+postsDecoder : Decoder (List Post)
+postsDecoder =
+    Decode.list postDecoder
+
+
+postDecoder : Decoder Post
+postDecoder =
+    Decode.map2 initPost
+        (Decode.field "id" Decode.int)
+        (Decode.field "title" Decode.string)
