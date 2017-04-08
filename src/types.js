@@ -9,6 +9,6 @@ export type PostType = {
 export type PostArrayType = Array<PostType>;
 
 export type AppState = {
-  posts: PostArrayType,
+  posts: ?PostArrayType,
   selectedPostId: number,
 };
