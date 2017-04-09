@@ -12,16 +12,20 @@
   },
   "devDependencies": {
     "flow-bin": "^0.43.1",
+    "gh-pages": "^0.12.0",
     "react-scripts": "0.9.5"
   },
+  "homepage": "https://zaboco.github.io/elm-and-react",
   "scripts": {
     "start": "react-scripts start",
     "build": "yarn build-elm && react-scripts build",
+    "deploy" : "yarn build && gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "flow": "flow",
-    "build-elm": "cd elm && elm make Posts.elm --output=posts.elm.js",
+    "build-elm": "yarn build-elm-app && yarn build-elm-redux",
+    "build-elm-app": "cd elm && elm make Posts.elm --output=posts.elm.js",
     "build-elm-redux": "cd elm && elm make Reducer.elm --output=reducer.elm.js",
-    "watch-elm": "chokidar 'elm/**/*.elm' -c 'yarn build-elm' --initial -d 1700",
+    "watch-elm-app": "chokidar 'elm/**/*.elm' -c 'yarn build-elm' --initial -d 1700",
     "watch-elm-redux": "chokidar 'elm/**/*.elm' -c 'yarn build-elm-redux' --initial -d 1700",
     "eject": "react-scripts eject"
   }
