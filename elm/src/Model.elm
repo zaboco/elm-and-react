@@ -1,6 +1,12 @@
-module Types exposing (..)
+module Model exposing (..)
 
 import Json.Decode as Decode exposing (Decoder)
+
+
+type alias Model =
+    { posts : Maybe Posts
+    , selectedId : Maybe Id
+    }
 
 
 type Id
@@ -17,6 +23,10 @@ type alias Post =
     , title : String
     , votes : Int
     }
+
+
+type alias Posts =
+    List Post
 
 
 initPost : Int -> String -> Post

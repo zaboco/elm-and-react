@@ -1,12 +1,9 @@
 port module Reducer exposing (..)
 
 import Redux
-import Http
 import Json.Encode as Encode
-import Process
-import Task exposing (Task)
-import Time exposing (Time)
-import Types exposing (..)
+import Model exposing (..)
+import Update exposing (..)
 
 
 port selectPost : ({ id : Int } -> msg) -> Sub msg
@@ -15,69 +12,9 @@ port selectPost : ({ id : Int } -> msg) -> Sub msg
 port changeVotes : ({ id : Int, delta : Int } -> msg) -> Sub msg
 
 
-type alias Posts =
-    List Post
-
-
-type alias Model =
-    { posts : Maybe Posts
-    , selectedId : Maybe Id
-    }
-
-
-init : ( Model, Cmd Msg )
-init =
-    ( { posts = Nothing, selectedId = Nothing }, requestPosts )
-
-
-type Msg
-    = SelectPost Id
-    | ChangeVotes Id Int
-    | LoadPosts (Result Http.Error Posts)
-
-
-delayRequest : Time -> (Result Http.Error a -> msg) -> Http.Request a -> Cmd msg
-delayRequest period handler request =
-    Process.sleep period
-        |> Task.andThen (\_ -> Http.toTask request)
-        |> Task.attempt handler
-
-
 apiUrl : String
 apiUrl =
     "https://jsonplaceholder.typicode.com/posts?_start=5&_end=7"
-
-
-requestPosts : Cmd Msg
-requestPosts =
-    delayRequest 700 LoadPosts <| Http.get apiUrl postsDecoder
-
-
-updateModel : Msg -> Model -> Model
-updateModel msg model =
-    case msg of
-        SelectPost id ->
-            { model | selectedId = Just id }
-
-        ChangeVotes id delta ->
-            let
-                updatePost =
-                    updatePostWithId id (changePostVotes delta)
-            in
-                { model | posts = Maybe.map updatePost model.posts }
-
-        LoadPosts (Ok posts) ->
-            if List.isEmpty posts then
-                { posts = Just [], selectedId = Nothing }
-            else
-                { posts = Just posts, selectedId = Maybe.map .id <| List.head posts }
-
-        LoadPosts (Err err) ->
-            let
-                _ =
-                    Debug.log "err" err
-            in
-                { model | posts = Just [] }
 
 
 subscriptions : Model -> Sub Msg
@@ -127,7 +64,7 @@ maybeEncode encoder value =
 main : Program Never Model Msg
 main =
     Redux.program
-        { init = init
+        { init = init apiUrl
         , update = (\msg model -> updateModel msg model ! [])
         , subscriptions = subscriptions
         , encode = encodeModel

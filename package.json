@@ -23,8 +23,8 @@
     "test": "react-scripts test --env=jsdom",
     "flow": "flow",
     "build-elm": "yarn build-elm-app && yarn build-elm-redux",
-    "build-elm-app": "cd elm && elm make Posts.elm --output=posts.elm.js",
-    "build-elm-redux": "cd elm && elm make Reducer.elm --output=reducer.elm.js",
+    "build-elm-app": "cd elm && elm make Posts.elm --output=posts.elm.js --warn",
+    "build-elm-redux": "cd elm && elm make Reducer.elm --output=reducer.elm.js --warn",
     "watch-elm-app": "chokidar 'elm/**/*.elm' -c 'yarn build-elm' --initial -d 1700",
     "watch-elm-redux": "chokidar 'elm/**/*.elm' -c 'yarn build-elm-redux' --initial -d 1700",
     "eject": "react-scripts eject"
