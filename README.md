@@ -2,7 +2,7 @@
 
 Some ways of integrating Elm with React & Redux, all in one app. [Demo](https://zaboco.github.io/elm-and-react/)
 
-![demo](img/demo-snapshot.png)
+<img src="img/demo-snapshot.png" width="300">
 
 #### React & Redux
 - React components
