@@ -2,6 +2,8 @@
 
 Some ways of integrating Elm with React & Redux, all in one app. [Demo](https://zaboco.github.io/elm-and-react/)
 
+This project was made as a sample for a meetup presentation at [React Bucharest](https://www.meetup.com/react-bucharest/). [Slides](https://speakerdeck.com/zaboco/elm-for-react-developers)
+
 <img src="img/demo-snapshot.png" width="300">
 
 #### React & Redux
